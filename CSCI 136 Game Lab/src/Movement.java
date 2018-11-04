@@ -46,16 +46,16 @@ public class Movement {
 		}
 
 		Bounds playerBounds = viewPlayer.getBoundsInParent();
-		int playerTopLeftX = (int) (x - (playerBounds.getWidth()) / 2);
-		int playerBottomRightX = (int) (x + (playerBounds.getWidth() / 2));
-		int playerTopLeftY = (int) (y + (playerBounds.getHeight() / 2));
-		int playerBottomRightY = (int) (y - (playerBounds.getHeight() / 2));
+		int playerTopLeftX = (int) (x);
+		int playerBottomRightX = (int) (x + (playerBounds.getWidth()));
+		int playerTopLeftY = (int) (y);
+		int playerBottomRightY = (int) (y + (playerBounds.getHeight()));
 
 		Bounds enemyBounds = viewEnemy.getBoundsInParent();
-		int enemyTopLeftX = (int) (x - (enemyBounds.getWidth() / 2));
-		int enemyBottomRightX = (int) (x + (enemyBounds.getWidth() / 2));
-		int enemyTopLeftY = (int) (y + (enemyBounds.getHeight() / 2));
-		int enemyBottomRightY = (int) (y - (enemyBounds.getHeight() / 2));
+		int enemyTopLeftX = (int) (x);
+		int enemyBottomRightX = (int) (x + (enemyBounds.getWidth()));
+		int enemyTopLeftY = (int) (y);
+		int enemyBottomRightY = (int) (y + (enemyBounds.getHeight()));
 
 		if (areRectsColliding(playerTopLeftX, playerBottomRightX, playerTopLeftY, playerBottomRightY, enemyTopLeftX,
 				enemyBottomRightX, enemyTopLeftY, enemyBottomRightY) == true) {
@@ -78,18 +78,18 @@ public class Movement {
 
 	private boolean areRectsColliding(int r1TopLeftX, int r1BottomRightX, int r1TopLeftY, int r1BottomRightY,
 			int r2TopLeftX, int r2BottomRightX, int r2TopLeftY, int r2BottomRightY) {
-		System.out.println("BottomRight 1 = (" + r1BottomRightX + ", " + r1BottomRightY + ")");
-		System.out.println("BottomRight 2 = (" + r2BottomRightX + ", " + r2BottomRightY + ")");
-
-		System.out.println("TopLeft 1 = (" + r1TopLeftX + ", " + r1TopLeftY + ")");
-		System.out.println("TopLeft 2 = (" + r2TopLeftX + ", " + r2TopLeftY + ")");
+//		System.out.println("BottomRight 1 = (" + r1BottomRightX + ", " + r1BottomRightY + ")");
+//		System.out.println("BottomRight 2 = (" + r2BottomRightX + ", " + r2BottomRightY + ")");
+//
+//		System.out.println("TopLeft 1 = (" + r1TopLeftX + ", " + r1TopLeftY + ")");
+//		System.out.println("TopLeft 2 = (" + r2TopLeftX + ", " + r2TopLeftY + ")");
 
 		if (r1TopLeftX < r2BottomRightX && r1BottomRightX > r2TopLeftX && r1TopLeftY < r2BottomRightY
 				&& r1BottomRightY > r2TopLeftY) {
-			System.out.println("Returning true");
+			//System.out.println("Returning true");
 			return true;
 		} else {
-			System.out.println("Returning false");
+			//System.out.println("Returning false");
 			return false;
 		}
 	}

@@ -54,10 +54,10 @@ public class Items {
 		Bounds item1Bounds = viewItem1.getBoundsInParent();
 		int x = (int)(viewItem1.getLayoutX());
 		int y = (int)(viewItem1.getLayoutY());
-		int itemTopLeftX = (int) (x - (item1Bounds.getWidth())/2);
-		int itemBottomRightX = (int) (x + (item1Bounds.getWidth()/2));
-		int itemTopLeftY = (int) (y + (item1Bounds.getHeight()/2));
-		int itemBottomRightY = (int) (y - (item1Bounds.getHeight()/2));
+		int itemTopLeftX = (int) (x);
+		int itemBottomRightX = (int) (x + (item1Bounds.getWidth()));
+		int itemTopLeftY = (int) (y);
+		int itemBottomRightY = (int) (y + (item1Bounds.getHeight()));
 		
 		if(areRectsColliding(itemTopLeftX, itemBottomRightX, itemTopLeftY, itemBottomRightY, move.playerTopLeftX, move.playerBottomRightX, move.playerTopLeftY, move.playerBottomRightY)) {
 			score =+ 1;
@@ -68,10 +68,10 @@ public class Items {
 		Bounds item2Bounds = viewItem2.getBoundsInParent();
 		int x = (int)(viewItem2.getLayoutX());
 		int y = (int)(viewItem2.getLayoutY());
-		int itemTopLeftX = (int) (x - (item2Bounds.getWidth())/2);
-		int itemBottomRightX = (int) (x + (item2Bounds.getWidth()/2));
-		int itemTopLeftY = (int) (y + (item2Bounds.getHeight()/2));
-		int itemBottomRightY = (int) (y - (item2Bounds.getHeight()/2));
+		int itemTopLeftX = (int) (x);
+		int itemBottomRightX = (int) (x + (item2Bounds.getWidth()));
+		int itemTopLeftY = (int) (y);
+		int itemBottomRightY = (int) (y + (item2Bounds.getHeight()));
 		
 		if(areRectsColliding(itemTopLeftX, itemBottomRightX, itemTopLeftY, itemBottomRightY, move.playerTopLeftX, move.playerBottomRightX, move.playerTopLeftY, move.playerBottomRightY)) {
 			score =+ 1;
@@ -82,10 +82,10 @@ public class Items {
 		Bounds itemBounds = viewItem3.getBoundsInParent();
 		int x = (int)(viewItem3.getLayoutX());
 		int y = (int)(viewItem3.getLayoutY());
-		int itemTopLeftX = (int) (x - (itemBounds.getWidth())/2);
-		int itemBottomRightX = (int) (x + (itemBounds.getWidth()/2));
-		int itemTopLeftY = (int) (y + (itemBounds.getHeight()/2));
-		int itemBottomRightY = (int) (y - (itemBounds.getHeight()/2));
+		int itemTopLeftX = (int) (x);
+		int itemBottomRightX = (int) (x + (itemBounds.getWidth()));
+		int itemTopLeftY = (int) (y);
+		int itemBottomRightY = (int) (y + (itemBounds.getHeight()));
 		
 		if(areRectsColliding(itemTopLeftX, itemBottomRightX, itemTopLeftY, itemBottomRightY, move.playerTopLeftX, move.playerBottomRightX, move.playerTopLeftY, move.playerBottomRightY)) {
 			score =+ 1;
@@ -96,10 +96,10 @@ public class Items {
 		Bounds itemBounds = viewItem4.getBoundsInParent();
 		int x = (int)(viewItem4.getLayoutX());
 		int y = (int)(viewItem4.getLayoutY());
-		int itemTopLeftX = (int) (x - (itemBounds.getWidth())/2);
-		int itemBottomRightX = (int) (x + (itemBounds.getWidth()/2));
-		int itemTopLeftY = (int) (y + (itemBounds.getHeight()/2));
-		int itemBottomRightY = (int) (y - (itemBounds.getHeight()/2));
+		int itemTopLeftX = (int) (x);
+		int itemBottomRightX = (int) (x + (itemBounds.getWidth()));
+		int itemTopLeftY = (int) (y);
+		int itemBottomRightY = (int) (y + (itemBounds.getHeight()));
 		
 		if(areRectsColliding(itemTopLeftX, itemBottomRightX, itemTopLeftY, itemBottomRightY, move.playerTopLeftX, move.playerBottomRightX, move.playerTopLeftY, move.playerBottomRightY)) {
 			score =+ 1;
@@ -110,10 +110,10 @@ public class Items {
 		Bounds itemBounds = viewItem5.getBoundsInParent();
 		int x = (int)(viewItem5.getLayoutX());
 		int y = (int)(viewItem5.getLayoutY());
-		int itemTopLeftX = (int) (x - (itemBounds.getWidth())/2);
-		int itemBottomRightX = (int) (x + (itemBounds.getWidth()/2));
-		int itemTopLeftY = (int) (y + (itemBounds.getHeight()/2));
-		int itemBottomRightY = (int) (y - (itemBounds.getHeight()/2));
+		int itemTopLeftX = (int) (x);
+		int itemBottomRightX = (int) (x + (itemBounds.getWidth()));
+		int itemTopLeftY = (int) (y);
+		int itemBottomRightY = (int) (y + (itemBounds.getHeight()));
 		
 		if(areRectsColliding(itemTopLeftX, itemBottomRightX, itemTopLeftY, itemBottomRightY, move.playerTopLeftX, move.playerBottomRightX, move.playerTopLeftY, move.playerBottomRightY)) {
 			score =+ 1;
