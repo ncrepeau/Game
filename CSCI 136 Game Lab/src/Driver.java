@@ -130,6 +130,10 @@ public class Driver extends Application {
 		Game myGame = new Game();
 		myGame.highscore1 = myItem.item1Collision(gameScreen, viewItem1) + myItem.item2Collision(gameScreen, viewItem2)+ myItem.item3Collision(gameScreen, viewItem3) + myItem.item4Collision(gameScreen, viewItem4) + myItem.item5Collision(gameScreen, viewItem5);
 		if(playMove.isColliding == true) {
+			viewPlayer.setLayoutX(0);
+			viewPlayer.setLayoutY(0);
+			viewEnemy.setLayoutX(0);
+			viewEnemy.setLayoutY(0);
 			highScoreText.setText(myGame.toString());	
 		}
 		
