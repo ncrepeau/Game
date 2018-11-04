@@ -50,7 +50,7 @@ public class Items {
 		return 0.0;
 	}
 
-	public int item1Collision(Scene gameScreen) {
+	public int item1Collision(Scene gameScreen, ImageView viewItem1) {
 		Bounds item1Bounds = viewItem1.getBoundsInParent();
 		int x = (int)(viewItem1.getLayoutX());
 		int y = (int)(viewItem1.getLayoutY());
@@ -64,7 +64,7 @@ public class Items {
 		}
 		return score;
 	}
-	public int item2Collision(Scene gameScreen) {
+	public int item2Collision(Scene gameScreen, ImageView viewItem2) {
 		Bounds item2Bounds = viewItem2.getBoundsInParent();
 		int x = (int)(viewItem2.getLayoutX());
 		int y = (int)(viewItem2.getLayoutY());
@@ -78,7 +78,7 @@ public class Items {
 		}
 		return score;
 	}
-	public int item3Collision(Scene gameScreen) {
+	public int item3Collision(Scene gameScreen, ImageView viewItem3) {
 		Bounds itemBounds = viewItem3.getBoundsInParent();
 		int x = (int)(viewItem3.getLayoutX());
 		int y = (int)(viewItem3.getLayoutY());
@@ -92,7 +92,7 @@ public class Items {
 		}
 		return score;
 	}
-	public int item4Collision(Scene gameScreen) {
+	public int item4Collision(Scene gameScreen, ImageView viewItem4) {
 		Bounds itemBounds = viewItem4.getBoundsInParent();
 		int x = (int)(viewItem4.getLayoutX());
 		int y = (int)(viewItem4.getLayoutY());
@@ -106,7 +106,7 @@ public class Items {
 		}
 		return score;
 	}
-	public int item5Collision(Scene gameScreen) {
+	public int item5Collision(Scene gameScreen, ImageView viewItem5) {
 		Bounds itemBounds = viewItem5.getBoundsInParent();
 		int x = (int)(viewItem5.getLayoutX());
 		int y = (int)(viewItem5.getLayoutY());

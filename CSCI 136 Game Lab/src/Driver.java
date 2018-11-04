@@ -128,7 +128,7 @@ public class Driver extends Application {
 		playMove.enemyMovement(gameScreen);
 
 		Game myGame = new Game();
-		myGame.highscore1 = myItem.item1Collision(gameScreen) + myItem.item2Collision(gameScreen)+ myItem.item3Collision(gameScreen) + myItem.item4Collision(gameScreen) + myItem.item5Collision(gameScreen);
+		myGame.highscore1 = myItem.item1Collision(gameScreen, viewItem1) + myItem.item2Collision(gameScreen, viewItem2)+ myItem.item3Collision(gameScreen, viewItem3) + myItem.item4Collision(gameScreen, viewItem4) + myItem.item5Collision(gameScreen, viewItem5);
 		if(playMove.isColliding == true) {
 			highScoreText.setText(myGame.toString());	
 		}
