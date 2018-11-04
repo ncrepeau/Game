@@ -12,6 +12,11 @@ public class Movement {
 	private double enemyX;
 	private double enemyY;
 	public boolean isColliding;
+	public int playerTopLeftX;
+	public int playerBottomRightX;
+	public int playerTopLeftY;
+	public int playerBottomRightY;
+
 	public void setMovement(int x, int y, ImageView viewPlayer, ImageView viewEnemy) {
 		this.viewPlayer = viewPlayer;
 		this.viewEnemy = viewEnemy;
@@ -23,66 +28,70 @@ public class Movement {
 		gameScreen.setOnKeyPressed(this::listenUp);
 	}
 
-	public void listenUp(KeyEvent event)
-	{
+	public void listenUp(KeyEvent event) {
 		KeyCode myCode = event.getCode();
-		
-		if(myCode == KeyCode.LEFT)
-		{
-			x-=10;
-			enemyX+=10;
+
+		if (myCode == KeyCode.LEFT) {
+			x -= 10;
+			enemyX += 10;
+		} else if (myCode == KeyCode.RIGHT) {
+			x += 10;
+			enemyX -= 10;
+		} else if (myCode == KeyCode.DOWN) {
+			y += 10;
+			enemyY -= 10;
+		} else if (myCode == KeyCode.UP) {
+			y -= 10;
+			enemyY += 10;
 		}
-		else if(myCode == KeyCode.RIGHT)
-		{
-			x+=10;
-			enemyX-=10;
-		}
-		else if(myCode == KeyCode.DOWN)
-		{
-			y+=10;
-			enemyY-=10;
-		}
-		else if(myCode == KeyCode.UP)
-		{
-			y-=10;
-			enemyY+=10;
-		}
-		
+
 		Bounds playerBounds = viewPlayer.getBoundsInParent();
-		int playerTopLeftX = (int) (x - (playerBounds.getWidth())/2);
-		int playerBottomRightX = (int) (x + (playerBounds.getWidth()/2));
-		int playerTopLeftY = (int) (y + (playerBounds.getHeight()/2));
-		int playerBottomRightY = (int) (y - (playerBounds.getHeight()/2));
-		
+		int playerTopLeftX = (int) (x - (playerBounds.getWidth()) / 2);
+		int playerBottomRightX = (int) (x + (playerBounds.getWidth() / 2));
+		int playerTopLeftY = (int) (y + (playerBounds.getHeight() / 2));
+		int playerBottomRightY = (int) (y - (playerBounds.getHeight() / 2));
+
 		Bounds enemyBounds = viewEnemy.getBoundsInParent();
-		int enemyTopLeftX = (int) (x - (enemyBounds.getWidth()/2));
-		int enemyBottomRightX = (int) (x + (enemyBounds.getWidth()/2));
-		int enemyTopLeftY = (int) (y + (enemyBounds.getHeight()/2));
-		int enemyBottomRightY = (int) (y - (enemyBounds.getHeight()/2));
-		if (areRectsColliding(playerTopLeftX, playerBottomRightX, playerTopLeftY, playerBottomRightY, enemyTopLeftX, enemyBottomRightX, enemyTopLeftY, enemyBottomRightY) == true) {
+		int enemyTopLeftX = (int) (x - (enemyBounds.getWidth() / 2));
+		int enemyBottomRightX = (int) (x + (enemyBounds.getWidth() / 2));
+		int enemyTopLeftY = (int) (y + (enemyBounds.getHeight() / 2));
+		int enemyBottomRightY = (int) (y - (enemyBounds.getHeight() / 2));
+
+		if (areRectsColliding(playerTopLeftX, playerBottomRightX, playerTopLeftY, playerBottomRightY, enemyTopLeftX,
+				enemyBottomRightX, enemyTopLeftY, enemyBottomRightY) == true) {
 			isColliding = true;
-		}else
-		{
+			System.out.println("colliding set true");
+		} else {
 			isColliding = false;
+			System.out.println("colliding set false");
 		}
 		viewPlayer.setX(x);
 		viewPlayer.setY(y);
 		viewEnemy.setX(enemyX);
 		viewEnemy.setY(enemyY);
-		
+
 	}
 
 	public void enemyMovement(Scene gameScreen) {
 		gameScreen.setOnKeyPressed(this::listenUp);
 	}
 
-	private boolean areRectsColliding(int r1Left, int r1Right,int r1Top, int r1Bottom, int r2Left,int r2Right, int r2Top, int r2Bottom)  {
+	private boolean areRectsColliding(int r1TopLeftX, int r1BottomRightX, int r1TopLeftY, int r1BottomRightY,
+			int r2TopLeftX, int r2BottomRightX, int r2TopLeftY, int r2BottomRightY) {
+		System.out.println("BottomRight 1 = (" + r1BottomRightX + ", " + r1BottomRightY + ")");
+		System.out.println("BottomRight 2 = (" + r2BottomRightX + ", " + r2BottomRightY + ")");
 
-	    if (r1Left > r2Right || r2Left > r1Right) return false; // onerectangle is entirely to the right of the other
+		System.out.println("TopLeft 1 = (" + r1TopLeftX + ", " + r1TopLeftY + ")");
+		System.out.println("TopLeft 2 = (" + r2TopLeftX + ", " + r2TopLeftY + ")");
 
-	    if (r1Bottom > r2Top || r2Bottom > r1Top) return false; // one rectangle is entirely above the other
-
-	    return true;
+		if (r1TopLeftX < r2BottomRightX && r1BottomRightX > r2TopLeftX && r1TopLeftY < r2BottomRightY
+				&& r1BottomRightY > r2TopLeftY) {
+			System.out.println("Returning true");
+			return true;
+		} else {
+			System.out.println("Returning false");
+			return false;
+		}
 	}
 
 }

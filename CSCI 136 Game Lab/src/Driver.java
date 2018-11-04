@@ -19,7 +19,7 @@ public class Driver extends Application {
 	ImageView viewPlayer;
 	int x = 550, y = 600;
 	ImageView viewEnemy;
-
+	Text highScoreText;
 	Scene gameScreen, start;
 
 	@Override
@@ -27,13 +27,14 @@ public class Driver extends Application {
 
 		Movement playMove = new Movement();
 
-		//Player image and position
+		// Player image and position
 		Player myPlayer = new Player();
 		Image player = new Image(myPlayer.getPlayerImg());
 		viewPlayer = new ImageView(player);
-		viewPlayer.setX(x);	viewPlayer.setY(y);
+		viewPlayer.setX(x);
+		viewPlayer.setY(y);
 
-		//Enemy image and position
+		// Enemy image and position
 		Enemy myEnemy = new Enemy();
 		Image enemy = new Image(myEnemy.getEnemyImg());
 		viewEnemy = new ImageView(enemy);
@@ -44,7 +45,7 @@ public class Driver extends Application {
 		viewEnemy.setFitHeight(190);
 		viewEnemy.setFitWidth(150);
 
-		//Items and their positions
+		// Items and their positions
 		Items myItem = new Items();
 		ArrayList<String> itemArray = new ArrayList<String>();
 		itemArray = Items.getImagePath();
@@ -53,7 +54,6 @@ public class Driver extends Application {
 		ImageView viewItem1 = new ImageView(item1);
 		viewItem1.setLayoutX(myItem.setItemX());
 		viewItem1.setLayoutY(myItem.setItemY());
-
 
 		Image item2 = new Image(itemArray.get(1));
 		ImageView viewItem2 = new ImageView(item2);
@@ -64,7 +64,6 @@ public class Driver extends Application {
 		ImageView viewItem3 = new ImageView(item3);
 		viewItem3.setLayoutX(myItem.setItemX());
 		viewItem3.setLayoutY(myItem.setItemY());
-
 
 		Image item4 = new Image(itemArray.get(3));
 		ImageView viewItem4 = new ImageView(item4);
@@ -85,10 +84,13 @@ public class Driver extends Application {
 		Button reset = new Button("Restart");
 		reset.setLayoutX(1115);
 		reset.setLayoutY(15);
-
+		
+		//HighScore Text
+		highScoreText = new Text(1000,5, "");
 		// Button Action
 		reset.setOnAction(e -> {
-			x = 550; y = 600;
+			x = 550;
+			y = 600;
 			viewPlayer.setX(x);
 			viewPlayer.setY(y);
 			playMove.setMovement(x, y, viewPlayer, viewEnemy);
@@ -116,20 +118,25 @@ public class Driver extends Application {
 		});
 
 		// the group of objects that will be added to the window
-		Group myGroup = new Group(viewPlayer, viewEnemy, viewItem1, viewItem2, viewItem3, viewItem4, viewItem5, viewItem6, reset); 
+		Group myGroup = new Group(viewPlayer, viewEnemy, viewItem1, viewItem2, viewItem3, viewItem4, viewItem5,
+				viewItem6, reset);
 		gameScreen = new Scene(myGroup, 1200, 800, Color.CORNSILK);
 
-		//Player Movement
+		// Player Movement
 		playMove.setMovement(x, y, viewPlayer, viewEnemy);
 		playMove.playerMovement(gameScreen);
 		playMove.enemyMovement(gameScreen);
-		
-		//testing to see if collision work
+
+		Game myGame = new Game();
+		myGame.highscore1 = myItem.item1Collision(gameScreen) + myItem.item2Collision(gameScreen)+ myItem.item3Collision(gameScreen) + myItem.item4Collision(gameScreen) + myItem.item5Collision(gameScreen);
 		if(playMove.isColliding == true) {
-			System.out.println("collision happening");
+			highScoreText.setText(myGame.toString());	
 		}
 		
-		//Start Screen: replace "primaryStage.setScene(gameScreen);" with "primaryStage.setScene(start);" to implement when ready
+		
+
+		// Start Screen: replace "primaryStage.setScene(gameScreen);" with
+		// "primaryStage.setScene(start);" to implement when ready
 		StartScreen begin = new StartScreen();
 		start = begin.Starting(primaryStage, gameScreen);
 
