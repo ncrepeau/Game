@@ -18,42 +18,41 @@ public class Driver extends Application {
 
 	ImageView viewPlayer;
 	int x = 550, y = 600;
+	int enemyX = 0, enemyY= 0;
 	ImageView viewEnemy;
-	Text highScoreText;
 	Scene gameScreen, start;
+	Text highScoreText;
 
 	@Override
 	public void start(Stage primaryStage) throws FileNotFoundException {
 
 		Movement playMove = new Movement();
+		highScoreText = new Text(1000, 10, "");
 
-		// Player image and position
+		//Player image and position
 		Player myPlayer = new Player();
 		Image player = new Image(myPlayer.getPlayerImg());
 		viewPlayer = new ImageView(player);
-		viewPlayer.setX(x);
-		viewPlayer.setY(y);
+		viewPlayer.setX(x);	viewPlayer.setY(y);
 
-		// Enemy image and position
+		//Enemy image and position
 		Enemy myEnemy = new Enemy();
 		Image enemy = new Image(myEnemy.getEnemyImg());
 		viewEnemy = new ImageView(enemy);
-		int enemyX = myEnemy.setEnemyX();
-		int enemyY = myEnemy.setEnemyY();
-		viewEnemy.setLayoutX(enemyX);
-		viewEnemy.setLayoutY(enemyY);
-		viewEnemy.setFitHeight(190);
-		viewEnemy.setFitWidth(150);
+		viewEnemy.setX(enemyX);
+		viewEnemy.setY(enemyY);
 
-		// Items and their positions
+		//Item Array
 		Items myItem = new Items();
 		ArrayList<String> itemArray = new ArrayList<String>();
 		itemArray = Items.getImagePath();
-
+		
+		//Items and their positions
 		Image item1 = new Image(itemArray.get(0));
 		ImageView viewItem1 = new ImageView(item1);
 		viewItem1.setLayoutX(myItem.setItemX());
 		viewItem1.setLayoutY(myItem.setItemY());
+
 
 		Image item2 = new Image(itemArray.get(1));
 		ImageView viewItem2 = new ImageView(item2);
@@ -80,23 +79,23 @@ public class Driver extends Application {
 		viewItem6.setLayoutX(myItem.setItemX());
 		viewItem6.setLayoutY(myItem.setItemY());
 
-		// Rest Button
+		//Reset Button
 		Button reset = new Button("Restart");
 		reset.setLayoutX(1115);
 		reset.setLayoutY(15);
-		
-		//HighScore Text
-		highScoreText = new Text(1000,5, "");
-		// Button Action
+
+		//Button Action
 		reset.setOnAction(e -> {
-			x = 550;
-			y = 600;
+			x = 550; y = 600;
 			viewPlayer.setX(x);
 			viewPlayer.setY(y);
-			playMove.setMovement(x, y, viewPlayer, viewEnemy);
-
-			viewEnemy.setLayoutX(myEnemy.setEnemyX());
-			viewEnemy.setLayoutY(myEnemy.setEnemyY());
+			
+			enemyX = 0;
+			enemyY = 0;
+			viewEnemy.setX(enemyX);
+			viewEnemy.setY(enemyY);
+			
+			playMove.setMovement(x, y, enemyX, enemyY, viewPlayer, viewEnemy);
 
 			viewItem1.setLayoutX(myItem.setItemX());
 			viewItem1.setLayoutY(myItem.setItemY());
@@ -117,35 +116,24 @@ public class Driver extends Application {
 			viewItem6.setLayoutY(myItem.setItemY());
 		});
 
-		// the group of objects that will be added to the window
-		Group myGroup = new Group(viewPlayer, viewEnemy, viewItem1, viewItem2, viewItem3, viewItem4, viewItem5,
-				viewItem6, reset);
+		//The group of objects that will be added to the window
+		Group myGroup = new Group(viewItem1, viewItem2, viewItem3, viewItem4, viewItem5, viewItem6, highScoreText, viewPlayer, viewEnemy, reset); 
 		gameScreen = new Scene(myGroup, 1200, 800, Color.CORNSILK);
 
-		// Player Movement
-		playMove.setMovement(x, y, viewPlayer, viewEnemy);
+		//Movement
+		playMove.setMovement(x, y, enemyX, enemyY, viewPlayer, viewEnemy);
 		playMove.playerMovement(gameScreen);
 		playMove.enemyMovement(gameScreen);
-
+		//HighScoreScreen
 		Game myGame = new Game();
-		myGame.highscore1 = myItem.item1Collision(gameScreen, viewItem1) + myItem.item2Collision(gameScreen, viewItem2)+ myItem.item3Collision(gameScreen, viewItem3) + myItem.item4Collision(gameScreen, viewItem4) + myItem.item5Collision(gameScreen, viewItem5);
-		if(playMove.isColliding == true) {
-			viewPlayer.setLayoutX(0);
-			viewPlayer.setLayoutY(0);
-			viewEnemy.setLayoutX(0);
-			viewEnemy.setLayoutY(0);
-			highScoreText.setText(myGame.toString());	
-		}
-		
-		
-
-		// Start Screen: replace "primaryStage.setScene(gameScreen);" with
-		// "primaryStage.setScene(start);" to implement when ready
+		myGame.highscore1 = playMove.highScore1;
+		highScoreText.setText(myGame.toString());
+		//Start Screen
 		StartScreen begin = new StartScreen();
-		start = begin.Starting(primaryStage, gameScreen);
+		start = begin.Starting(primaryStage, gameScreen, viewPlayer);
 
 		primaryStage.setTitle("Game"); // title of window in the window's bar
-		primaryStage.setScene(gameScreen); // implements the "scene" (objects/background)
+		primaryStage.setScene(start); // implements the "scene" (objects/background)
 		primaryStage.show(); // shows the window (would probably not appear w/o it)
 	}
 }
