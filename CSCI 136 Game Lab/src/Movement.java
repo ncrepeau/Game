@@ -1,3 +1,4 @@
+
 import javafx.geometry.Bounds;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -7,18 +8,14 @@ import javafx.scene.input.KeyEvent;
 public class Movement {
 	private ImageView viewEnemy;
 	private ImageView viewPlayer;
-	private ImageView viewItem1;
-	private ImageView viewItem2;
-	private ImageView viewItem3;
-	private ImageView viewItem4;
-	private ImageView viewItem5;
+	Items myItem = new Items();
 	private int x = 550, y = 600;
 	private double enemyX;
 	private double enemyY;
 	private boolean isColliding;
+	public int score;
 	public int highScore1;
-	public int playerTopLeftX;
-	private Items myItem = new Items();	
+	public int playerTopLeftX;	
 	public int playerBottomRightX;
 	public int playerTopLeftY;
 	public int playerBottomRightY;
@@ -75,8 +72,24 @@ public class Movement {
 			System.out.println("false");
 		}
 		
-	
-		highScore1 = myItem.item1Collision(viewItem1) + myItem.item2Collision(viewItem2) + myItem.item3Collision(viewItem3) + myItem.item4Collision(viewItem4) + myItem.item5Collision(viewItem5);
+		
+		if(areRectsColliding(myItem.item1TopLeftX, myItem.item1BottomRightX, myItem.item1TopLeftY, myItem.item1BottomRightY, playerTopLeftX, playerBottomRightX, playerTopLeftY, playerBottomRightY)) {
+			score =+ 1;
+		}
+		if(areRectsColliding(myItem.item2TopLeftX, myItem.item2BottomRightX, myItem.item2TopLeftY, myItem.item2BottomRightY, playerTopLeftX, playerBottomRightX, playerTopLeftY, playerBottomRightY)) {
+			score =+ 1;
+		}
+		if(areRectsColliding(myItem.item3TopLeftX, myItem.item3BottomRightX, myItem.item3TopLeftY, myItem.item3BottomRightY, playerTopLeftX, playerBottomRightX, playerTopLeftY, playerBottomRightY)) {
+			score =+ 1;
+		}
+		if(areRectsColliding(myItem.item4TopLeftX, myItem.item4BottomRightX, myItem.item4TopLeftY, myItem.item4BottomRightY, playerTopLeftX, playerBottomRightX, playerTopLeftY, playerBottomRightY)) {
+			score =+ 1;
+		}
+		if(areRectsColliding(myItem.item5TopLeftX, myItem.item5BottomRightX, myItem.item5TopLeftY, myItem.item5BottomRightY, playerTopLeftX, playerBottomRightX, playerTopLeftY, playerBottomRightY)) {
+			score =+ 1;
+		}
+		
+		
 	
 		viewPlayer.setX(x);
 		viewPlayer.setY(y);

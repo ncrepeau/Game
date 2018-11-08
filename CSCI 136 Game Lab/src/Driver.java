@@ -124,7 +124,7 @@ public class Driver extends Application {
 		playMove.setMovement(x, y, enemyX, enemyY, viewPlayer, viewEnemy);
 		playMove.playerMovement(gameScreen);
 		playMove.enemyMovement(gameScreen);
-		//HighScoreScreen
+		//HighScoreScreen, Move to end screen.
 		Game myGame = new Game();
 		myGame.highscore1 = playMove.highScore1;
 		highScoreText.setText(myGame.toString());
