@@ -1,3 +1,4 @@
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -36,7 +37,13 @@ public class Items {
 	public int item5BottomRightX;
 	public int item5TopLeftY;
 	public int item5BottomRightY;
+	//item 6
+	public int item6TopLeftX;
+	public int item6BottomRightX;
+	public int item6TopLeftY;
+	public int item6BottomRightY;
 
+	//Array to read in image locations for items from "ItemFile.txt"
 	public static ArrayList<String> getImagePath() throws FileNotFoundException {
 		ArrayList<String> itemArray = new ArrayList<String>();
 		File myFile = new File("./src/ItemFile.txt");
@@ -49,6 +56,7 @@ public class Items {
 		return itemArray;
 	}
 	
+	//Randomly generates an item image's X-coordinate
 	public int setItemX() {
 		//Used to generate two random integers between 1 and 1150
 		int randX = myRand.nextInt(1150)+1;
@@ -56,6 +64,7 @@ public class Items {
 		return randX;
 	}
 	
+	//Randomly generates an item image's Y-coordinate
 	public int setItemY() {
 		//Used to generate two random integers between 1 and 750
 		int randY = myRand.nextInt(750)+1;
@@ -76,6 +85,7 @@ public class Items {
 		item1TopLeftY = (int) (y);
 		item1BottomRightY = (int) (y + (item1Bounds.getHeight()));
 	}
+	
 	public void item2Collision(Scene gameScreen, ImageView viewItem2) {
 		Bounds item2Bounds = viewItem2.getBoundsInParent();
 		int x = (int)(viewItem2.getLayoutX());
@@ -85,6 +95,7 @@ public class Items {
 		item2TopLeftY = (int) (y);
 		item2BottomRightY = (int) (y + (item2Bounds.getHeight()));
 	}
+	
 	public void  item3Collision(Scene gameScreen, ImageView viewItem3) {
 		Bounds itemBounds = viewItem3.getBoundsInParent();
 		int x = (int)(viewItem3.getLayoutX());
@@ -104,6 +115,7 @@ public class Items {
 		item4TopLeftY = (int) (y);
 		item4BottomRightY = (int) (y + (itemBounds.getHeight()));
 	}
+	
 	public void item5Collision(Scene gameScreen, ImageView viewItem5) {
 		Bounds itemBounds = viewItem5.getBoundsInParent();
 		int x = (int)(viewItem5.getLayoutX());
@@ -112,9 +124,18 @@ public class Items {
 		item5BottomRightX = (int) (x + (itemBounds.getWidth()));
 		item5TopLeftY = (int) (y);
 		item5BottomRightY = (int) (y + (itemBounds.getHeight()));
-	}	
+	}
+	
+	public void item6Collision(Scene gameScreen, ImageView viewItem6) {
+		Bounds itemBounds = viewItem6.getBoundsInParent();
+		int x = (int)(viewItem6.getLayoutX());
+		int y = (int)(viewItem6.getLayoutY());
+		item6TopLeftX = (int) (x);
+		item6BottomRightX = (int) (x + (itemBounds.getWidth()));
+		item6TopLeftY = (int) (y);
+		item6BottomRightY = (int) (y + (itemBounds.getHeight()));
+	}
 	
 }
 	
 
-	
